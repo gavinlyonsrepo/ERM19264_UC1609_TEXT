@@ -1,0 +1,31 @@
+# -----------------------------------------
+# Syntax colouring for ERM19264_UC1609 library
+# -----------------------------------------
+
+# Datatypes (such as objects)
+ERM19264_UC1609_T	KEYWORD1
+
+#Methods / functions
+
+LCDGotoXY	KEYWORD2
+LCDChar	KEYWORD2
+LCDString	KEYWORD2
+
+LCDbegin	KEYWORD2
+LCDinit	KEYWORD2
+LCDEnable	KEYWORD2
+LCDFillScreen	KEYWORD2
+LCDFillPage	KEYWORD2
+LCDrotate	KEYWORD2
+invertDisplay	KEYWORD2
+LCD_allpixelsOn	KEYWORD2
+LCDscroll	KEYWORD2
+LCDReset	KEYWORD2
+LCDBitmap	KEYWORD2
+
+# Constants
+
+UC1609_ROTATION_FLIP_TWO	LITERAL1
+UC1609_ROTATION_NORMAL	LITERAL1
+UC1609_ROTATION_FLIP_ONE	LITERAL1
+UC1609_ROTATION_FLIP_THREE	LITERAL1
