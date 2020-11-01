@@ -1,4 +1,4 @@
-![ ERM19264 ](https://github.com/gavinlyonsrepo/ERM19264_UC1609/blob/main/extras/image/colour.jpg)
+![ ERM19264 ](https://github.com/gavinlyonsrepo/ERM19264_UC1609/blob/main/extras/image/color.jpg)
 
 Table of contents
 ---------------------------
@@ -31,7 +31,7 @@ Overview
 Output
 ---------------------------------
 
-Output Screenshot showing full font (note the font file needs a small mod to display the first 30 characters.  see features below.
+Output Screenshot showing full font (note the font file needs a small mod to display the first 30 characters.  see features below.)
 
 ![op](https://github.com/gavinlyonsrepo/ERM19264_UC1609_T/blob/main/extras/image/output.jpg)
 
@@ -73,7 +73,7 @@ selection and easy to port to other MCU's. When running Software SPI it may be n
 
 *text and fonts*
 
-Text only, no buffer or no graphics , relatively light weight. A "hello world" Sketch uses 2172 bytes (6%) of and uses 42 bytes (2%) of dynamic memory,
+Text only, no buffer or no graphics , relatively light weight. A "hello world" Sketch uses 2172 bytes (6%) of and uses 42 bytes (2%) of dynamic memory on UNO.
 Turns LCD into simple character LCD(216 characters, 8 rows/pages)
 
 The font is be  truncated by two defines to save memory space.
