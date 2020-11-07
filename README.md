@@ -26,7 +26,8 @@ Overview
 * Author: Gavin Lyons
 * Arduino IDE: 1.8.10
 
-* This is a truncated light weight text only version of the main library [ here at link ](https://github.com/gavinlyonsrepo/ERM19264_UC1609) ,which includes full graphic support  ERM19264_UC1609. Lots more info and documentation there. 
+* This is a truncated light weight text only version of the main library [ here at link ](https://github.com/gavinlyonsrepo/ERM19264_UC1609) ,which includes full graphic support  ERM19264_UC1609. Lots more info and documentation there. There is also PIC XC8 ports available 
+[here at link.](https://github.com/gavinlyonsrepo/pic_16F18346_projects)
 
 Output
 ---------------------------------

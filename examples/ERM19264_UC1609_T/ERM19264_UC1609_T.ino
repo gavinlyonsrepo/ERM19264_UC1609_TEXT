@@ -22,8 +22,8 @@
 #define CS 8  // GPIO pin number pick any you want
 // GPIO pin number SCK(UNO 13) , HW SPI , SCK
 // GPIO pin number SDA(UNO 11) , HW SPI , MOSI
-ERM19264_UC1609_T  mylcd(CD, RST, CS); // instate object , CD, RST, CS
-
+//ERM19264_UC1609_T  mylcd(CD, RST, CS); // instate object , CD, RST, CS
+ERM19264_UC1609_T  mylcd(4, 27, 15); 
 // ************* SETUP ***************
 void setup() {
   mylcd.LCDbegin(VbiasPOT); // initialize the LCD
