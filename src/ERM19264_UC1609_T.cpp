@@ -49,12 +49,12 @@ void ERM19264_UC1609_T::LCDbegin (uint8_t VbiasPOT)
    //There is a pre-defined macro SPI_HAS_TRANSACTION in SPI library for checking whether the firmware //of the Arduino board supports SPI.beginTransaction().
 #ifdef SPI_HAS_TRANSACTION
     {
-    SPI.beginTransaction(SPISettings(SPI_FREQ, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(SPI_FREQ, SPI_DIRECTION, SPI_UC1609_MODE));
    }
 #else
     {
         //STM32 blue pill uses this 
-        SPI.setClockDivider(SPI_CLOCK_DIV8); // 72/8 = 9Mhz
+        SPI.setClockDivider(SPI_UC1609_CLOCK_DIV); // 72/8 = 9Mhz
       }
 #endif
 
@@ -290,7 +290,7 @@ void ERM19264_UC1609_T::LCDGotoXY(uint8_t column , uint8_t page)
 
 // Desc: draws passed character.
 // Param1: character 'A' or number in  the ASCII table 1-127(default)
-void ERM19264_UC1609_T::LCDChar(char character)
+void ERM19264_UC1609_T::LCDChar(unsigned char character)
 {
    UC1609_CS_SetLow;
    UC1609_FONTPADDING;;
@@ -304,7 +304,7 @@ void ERM19264_UC1609_T::LCDChar(char character)
 
 // Desc: draws passed  character array
 // Param1: pointer to start of character array
-void ERM19264_UC1609_T::LCDString(const char *characters)
+void ERM19264_UC1609_T::LCDString(const unsigned  char *characters)
 {
     while (*characters)
     LCDChar(*characters++);

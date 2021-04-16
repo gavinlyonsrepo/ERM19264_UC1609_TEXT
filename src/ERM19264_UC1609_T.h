@@ -30,10 +30,10 @@
 #define INVERSE 2
 
 // UC1909 Read registers
-#define UC1609_GET_STATUS 0x01 // Not used v1.0
+#define UC1609_GET_STATUS 0xFE
 
 // UC1909 Write registers
-#define UC1609_SYSTEM_RESET 0xE2 // Not used v1.0
+#define UC1609_SYSTEM_RESET 0xE2 
 
 #define UC1609_POWER_CONTROL 0x2F 
 #define UC1609_PC_SET 0x06 // PC[2:0] 110 Internal V LCD (7x charge pump) + 10b: 1.4mA
@@ -94,8 +94,10 @@
 #define UC1609_RST_SetLow digitalWrite(_LCD_RST, LOW)
 
 // SPI
-#define SPI_FREQ 8000000 // Mhz
-//#define SPI_FREQ 1000000 // Mhz, can be used on fast devices
+#define SPI_FREQ 8000000 // Mhz (1000000 can be used on high freq MCU)
+#define SPI_DIRECTION  MSBFIRST 
+#define SPI_UC1609_MODE SPI_MODE0
+#define SPI_UC1609_CLOCK_DIV SPI_CLOCK_DIV8 //STM32 uses this 
 #define UC1609_HIGHFREQ_DELAY 0 // Can be used in software SPI for high freq MCU
 
 // Display  Size
@@ -113,8 +115,8 @@ class ERM19264_UC1609_T {
     ~ERM19264_UC1609_T(){};
 
     void  LCDGotoXY(uint8_t column , uint8_t page);
-    void  LCDChar(char character);
-    void  LCDString(const char *characters);
+    void  LCDChar(unsigned char character);
+    void  LCDString(const unsigned char *characters);
     void LCDbegin(uint8_t VbiasPot = UC1609_DEFAULT_GN_PM );
     void LCDinit(void);
     void LCDEnable(uint8_t on);
