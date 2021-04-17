@@ -39,10 +39,17 @@ void setup()
 // *********** MAIN LOOP ******************
 void loop()
 {
-
+  unsigned char test1[] = "All Pixels on";
+  unsigned char test2[] = "Inverse test  ";
+  unsigned char test3_1[] = "Rotate test   ";
+  unsigned char test3_2[] = "rotated";
+  unsigned char test4[] = "scroll test";
+  unsigned char test5_1[] = "LCD disable test";
+  unsigned char test5_2[] = "End tests";
+  
   // Test 1 LCD all pixels on
   mylcd.LCDGotoXY(20, 3);
-  mylcd.LCDString("All Pixels on");
+  mylcd.LCDString(test1);
   delay(4000);
   mylcd.LCDFillScreen(0x00, 0);
 
@@ -53,7 +60,7 @@ void loop()
 
   // Test 2 inverse
   mylcd.LCDGotoXY(20, 3);
-  mylcd.LCDString("inverse test  ");
+  mylcd.LCDString(test2);
 
   mylcd.invertDisplay(0); // Normal
   delay(2000);
@@ -65,12 +72,12 @@ void loop()
   // Test3 LCD rotate
 
   mylcd.LCDGotoXY(20, 3);
-  mylcd.LCDString("rotate test  ");
+  mylcd.LCDString(test3_1);
   delay(2000);
   mylcd.LCDFillScreen(0x00, 0);
 
   mylcd.LCDrotate(UC1609_ROTATION_FLIP_ONE);
-  mylcd.LCDString("rotated");
+  mylcd.LCDString(test3_2);
   delay(5000);
   mylcd.LCDrotate(UC1609_ROTATION_NORMAL);
   mylcd.LCDFillScreen(0x00, 0);
@@ -78,9 +85,8 @@ void loop()
 
   // Test4 LCD scroll
 
-  //
   mylcd.LCDGotoXY(20, 3);
-  mylcd.LCDString("scroll test");
+  mylcd.LCDString(test4);
   for (uint8_t i = 0 ; i < 62 ; i ++)
   {
     mylcd.LCDscroll(i);
@@ -92,7 +98,7 @@ void loop()
   //Test5 LCD enable and disable
   mylcd.LCDFillScreen(0x00, 0);
   mylcd.LCDGotoXY(20, 3);
-  mylcd.LCDString("LCD Disable test");
+  mylcd.LCDString(test5_1);
 
   delay(5000);
   mylcd.LCDEnable(0);
@@ -101,7 +107,7 @@ void loop()
 
   mylcd.LCDGotoXY(20, 3);
   mylcd.LCDFillPage(0);
-  mylcd.LCDString("End");
+  mylcd.LCDString(test5_2);
 
 
   while (1)

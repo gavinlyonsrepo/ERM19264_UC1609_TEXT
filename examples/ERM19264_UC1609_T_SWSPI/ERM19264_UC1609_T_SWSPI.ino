@@ -20,12 +20,10 @@
 #define CD 10 // GPIO pin number pick any you want 
 #define RST 9 // GPIO pin number pick any you want
 #define CS 8  // GPIO pin number pick any you want
-#define SCLK 6 // GPIO pin number pick any you want
-#define DIN  7 // GPIO pin number pick any you want
+#define SCLK 7 // GPIO pin number pick any you want
+#define DIN  6 // GPIO pin number pick any you want
 
 ERM19264_UC1609_T  mylcd(CD, RST, CS, SCLK, DIN ); // instantiate object pick any GPIO you want
-
-
 
 
 // ************* SETUP ***************
@@ -49,36 +47,37 @@ void loop()
 
 void DisplayText()
 {
-    long startTime ;                    // start time for stop watch
-    int count = 0;
-    char countArray[10];
-    char elapsedTimeArray[10];
-    long elapsedTime ;                  // elapsed time for stop watch
-    startTime = millis();
-      
-    while (1)
+  long startTime ;                    // start time for stop watch
+  int count = 0;
+  char countArray[10];
+  char elapsedTimeArray[10];
+  long elapsedTime ;                  // elapsed time for stop watch
+  startTime = millis();
+  unsigned char test[] =  "Software SPI speed test";
+  unsigned char test2[] =  "Time Taken:";
+  while (1)
+  {
+    mylcd.LCDGotoXY(10, 1);
+    mylcd.LCDString(test);
+    mylcd.LCDGotoXY(10, 2);
+    if (count < 1000)
     {
-     mylcd.LCDGotoXY(10, 1);
-     mylcd.LCDString("Software SPI speed test");
-     mylcd.LCDGotoXY(10, 2);
-     if (count < 1000)
-     {
-       mylcd.LCDString(itoa(count, countArray, 10));
-     } else
-     {
-       elapsedTime =   millis() - startTime;
-       mylcd.LCDString("Time Taken:");
-       elapsedTime = elapsedTime / 1000L;
-       mylcd.LCDString(itoa(elapsedTime, elapsedTimeArray ,10));
-     }
-     delay(1);
-     if (count == 1000)
-     {
-       while (1) {
-         delay(1000);
-       }; //test finished
-     }
-     count ++;
+      mylcd.LCDString((unsigned char*)itoa(count, countArray, 10));
+    } else
+    {
+      elapsedTime =   millis() - startTime;
+      mylcd.LCDString(test2);
+      elapsedTime = elapsedTime / 1000L;
+      mylcd.LCDString((unsigned char*)itoa(elapsedTime, elapsedTimeArray , 10));
     }
-  
+    delay(1);
+    if (count == 1000)
+    {
+      while (1) {
+        delay(1000);
+      }; //test finished
+    }
+    count ++;
+  }
+
 }
