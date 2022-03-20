@@ -35,7 +35,7 @@
 // UC1909 Write registers
 #define UC1609_SYSTEM_RESET 0xE2 
 
-#define UC1609_POWER_CONTROL 0x2F 
+#define UC1609_POWER_CONTROL 0x28 
 #define UC1609_PC_SET 0x06 // PC[2:0] 110 Internal V LCD (7x charge pump) + 10b: 1.4mA
 
 #define UC1609_ADDRESS_CONTROL 0x88 // set RAM address control
@@ -70,10 +70,16 @@
 #define UC1609_ROTATION_FLIP_THREE 0x00
 
 // Delays
-#define UC1609_RESET_DELAY 50 // mS delay
-#define UC1609_RESET_DELAY2   0 // mS delay
-#define UC1609_INIT_DELAY 100   //  mS delay
-#define UC1609_INIT_DELAY2 3 // mS delay
+// Delays
+// mS , datasheet FIG 11 wait <=  3mS
+#define UC1609_POWERON_DELAY1  3 
+ // mS, datasheet FIG 11 wait >=  3uS
+#define UC1609_POWERON_DELAY2  50
+// mS  datasheet FIG 11 wait >= 5mS  , Does not work on SW SPI blue 
+#define UC1609_POWERON_DELAY3  0 
+
+#define UC1609_INIT_DELAY 100 //  mS delay ,after init, 
+
 
 // No font
 #ifdef UC_FONT_MOD_ONE
@@ -119,14 +125,14 @@ class ERM19264_UC1609_T {
     void  LCDString(const unsigned char *characters);
     void LCDbegin(uint8_t VbiasPot = UC1609_DEFAULT_GN_PM );
     void LCDinit(void);
+    void LCDPowerDown(void);
     void LCDEnable(uint8_t on);
     void LCDFillScreen(uint8_t pixel, uint8_t mircodelay);
     void LCDFillPage(uint8_t pixels);
     void LCDrotate(uint8_t rotatevalue);
-    void invertDisplay(uint8_t on);
-    void LCD_allpixelsOn(uint8_t bits);
+    void LCDinvertDisplay(uint8_t on);
+    void LCDAllpixelsOn(uint8_t bits);
     void LCDscroll(uint8_t bits);
-    void LCDReset(void);
     void LCDBitmap(int16_t x, int16_t y, uint8_t w, uint8_t h, const uint8_t* data);
            
   private:

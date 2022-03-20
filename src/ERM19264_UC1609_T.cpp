@@ -71,10 +71,15 @@ void ERM19264_UC1609_T::LCDbegin (uint8_t VbiasPOT)
 // Desc: Called from LCDbegin carries out Power on sequence and register init
 void ERM19264_UC1609_T::LCDinit()
  {
-  delay(UC1609_INIT_DELAY2); //3mS delay, datasheet
+  
   UC1609_CD_SetHigh;
   UC1609_CS_SetHigh;
-  LCDReset();
+  
+   delay(UC1609_POWERON_DELAY1); 
+   UC1609_RST_SetLow;
+   delay(UC1609_POWERON_DELAY2); 
+   UC1609_RST_SetHigh;
+   delay(UC1609_POWERON_DELAY3);
 
   UC1609_CS_SetLow;
 
@@ -105,15 +110,6 @@ void ERM19264_UC1609_T::send_command (uint8_t command, uint8_t value)
   UC1609_CD_SetHigh;
 }
 
-// Desc: Resets LCD in a five wire setup called at start 
-// and  should also be called in a controlled power down setting
-void ERM19264_UC1609_T::LCDReset () 
-{
-  UC1609_RST_SetLow;
-  delay(UC1609_RESET_DELAY); // Datasheet says  3uS
-  UC1609_RST_SetHigh;
-  delay(UC1609_RESET_DELAY2); // DataSheet says 5mS
-}
 
 // Desc: turns in display
 // Param1: bits 1  on , 0 off
@@ -159,17 +155,26 @@ void ERM19264_UC1609_T::LCDrotate(uint8_t rotatevalue)
 
 // Desc: invert the display
 // Param1: bits, 1 invert , 0 normal
-void ERM19264_UC1609_T::invertDisplay (uint8_t bits) 
+void ERM19264_UC1609_T::LCDinvertDisplay (uint8_t bits) 
 {
  UC1609_CS_SetLow;
   send_command(UC1609_INVERSE_DISPLAY, bits);
  UC1609_CS_SetHigh;
 }
 
+// Desc: Powerdown procedure for LCD see datasheet P40
+void ERM19264_UC1609_T::LCDPowerDown(void)
+{
+  UC1609_RST_SetLow;
+  delay(1);  // datasheet FIG 14 says >= 3uS
+  UC1609_RST_SetHigh;
+  LCDEnable(0);
+}
+
 // Desc: turns on all Pixels
 // Param1: bits Set DC[1] to force all SEG drivers to output ON signals
 // 1 all on ,  0 all off
-void ERM19264_UC1609_T::LCD_allpixelsOn(uint8_t bits) 
+void ERM19264_UC1609_T::LCDAllpixelsOn(uint8_t bits) 
 {
  UC1609_CS_SetLow;
   send_command(UC1609_ALL_PIXEL_ON, bits);

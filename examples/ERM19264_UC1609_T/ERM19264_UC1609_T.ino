@@ -17,11 +17,12 @@
 #define VbiasPOT 0x49 //Constrast 00 to FE , 0x49 is default. user adjust
 
 // GPIO 5-wire SPI interface
-#define CD 10 // GPIO pin number pick any you want 
-#define RST 9 // GPIO pin number pick any you want
-#define CS 8  // GPIO pin number pick any you want
-// GPIO pin number SCK(UNO 13) , HW SPI , SCK
+
+#define CS 10  // GPIO pin number pick any you want
+#define CD  9 // GPIO pin number pick any you want 
+#define RST 8 // GPIO pin number pick any you want
 // GPIO pin number SDA(UNO 11) , HW SPI , MOSI
+// GPIO pin number SCK(UNO 13) , HW SPI , SCK
 
 ERM19264_UC1609_T  mylcd(CD, RST, CS); // instate object , CD, RST, CS
 
@@ -32,7 +33,7 @@ ERM19264_UC1609_T  mylcd(CD, RST, CS); // instate object , CD, RST, CS
 void setup() {
   mylcd.LCDbegin(VbiasPOT); // initialize the LCD
   mylcd.LCDFillScreen(0x00, 0); // clear screen
-  delay(500);
+  delay(50);
 }
 
 // ************** MAIN LOOP ***********

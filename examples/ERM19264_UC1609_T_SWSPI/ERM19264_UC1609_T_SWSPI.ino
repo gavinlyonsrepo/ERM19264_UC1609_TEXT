@@ -17,11 +17,11 @@
 #define VbiasPOT 0x49 // contrast range 0x00 to 0xFF, 0x49 is datasheet default, user adjust.
 
 // GPIO 5-wire SPI interface
-#define CD 10 // GPIO pin number pick any you want 
-#define RST 9 // GPIO pin number pick any you want
-#define CS 8  // GPIO pin number pick any you want
-#define SCLK 7 // GPIO pin number pick any you want
-#define DIN  6 // GPIO pin number pick any you want
+#define CS 10  // GPIO pin number pick any you want
+#define CD 9 // GPIO pin number pick any you want
+#define RST 8 // GPIO pin number pick any you want
+#define DIN  7 // GPIO pin number pick any you want
+#define SCLK 6 // GPIO pin number pick any you want
 
 ERM19264_UC1609_T  mylcd(CD, RST, CS, SCLK, DIN ); // instantiate object pick any GPIO you want
 

@@ -20,11 +20,11 @@
 #define VbiasPOT 0x49 //Constrast 00 to FE , 0x49 is default. USER adjust
 
 // GPIO 5-wire SPI interface
-#define CD 10 // GPIO pin number pick any you want 
-#define RST 9 // GPIO pin number pick any you want
-#define CS 8  // GPIO pin number pick any you want
-// GPIO pin number SCK(UNO 13) , HW SPI , SCK
+#define CS 10  // GPIO pin number pick any you want
+#define CD  9 // GPIO pin number pick any you want 
+#define RST 8 // GPIO pin number pick any you want
 // GPIO pin number SDA(UNO 11) , HW SPI , MOSI
+// GPIO pin number SCK(UNO 13) , HW SPI , SCK
 
 ERM19264_UC1609_T  mylcd(CD , RST, CS);
 
@@ -53,20 +53,20 @@ void loop()
   delay(4000);
   mylcd.LCDFillScreen(0x00, 0);
 
-  mylcd.LCD_allpixelsOn(1);
+  mylcd.LCDAllpixelsOn(1);
   delay(2000);
-  mylcd.LCD_allpixelsOn(0);
+  mylcd.LCDAllpixelsOn(0);
   delay(2000);
 
   // Test 2 inverse
   mylcd.LCDGotoXY(20, 3);
   mylcd.LCDString(test2);
 
-  mylcd.invertDisplay(0); // Normal
+  mylcd.LCDinvertDisplay(0); // Normal
   delay(2000);
-  mylcd.invertDisplay(1); // Inverted
+  mylcd.LCDinvertDisplay(1); // Inverted
   delay(4000);
-  mylcd.invertDisplay(0);
+  mylcd.LCDinvertDisplay(0);
   mylcd.LCDFillPage(0);
 
   // Test3 LCD rotate
