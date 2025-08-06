@@ -36,7 +36,7 @@ ERM19264_UC1609_T :: ERM19264_UC1609_T(int8_t cd, int8_t rst, int8_t cs, int8_t 
 // Desc: begin Method initialise LCD 
 // Sets pinmodes and SPI setup
 // Param1: VBiasPOT default = 0x49 , range 0x00 to 0xFE
-void ERM19264_UC1609_T::LCDbegin (uint8_t VbiasPOT) 
+void ERM19264_UC1609_T::LCDbegin (uint8_t VbiasPOT, uint8_t AddressSet)
 {
   pinMode(_LCD_CD , OUTPUT);
   pinMode(_LCD_RST, OUTPUT);
@@ -65,11 +65,11 @@ void ERM19264_UC1609_T::LCDbegin (uint8_t VbiasPOT)
     pinMode(_LCD_SCLK, OUTPUT);
   }
   
-  LCDinit();
+  LCDinit(AddressSet);
 }
 
 // Desc: Called from LCDbegin carries out Power on sequence and register init
-void ERM19264_UC1609_T::LCDinit()
+void ERM19264_UC1609_T::LCDinit(uint8_t AddressSet)
  {
   
   UC1609_CD_SetHigh;
@@ -84,7 +84,8 @@ void ERM19264_UC1609_T::LCDinit()
   UC1609_CS_SetLow;
 
   send_command(UC1609_TEMP_COMP_REG, UC1609_TEMP_COMP_SET); 
-  send_command(UC1609_ADDRESS_CONTROL, UC1609_ADDRESS_SET); 
+  if (AddressSet > 7) AddressSet = UC1609_ADDRESS_SET;
+  send_command(UC1609_ADDRESS_CONTROL, AddressSet);
   send_command(UC1609_FRAMERATE_REG, UC1609_FRAMERATE_SET);
   send_command(UC1609_BIAS_RATIO, UC1609_BIAS_RATIO_SET);  
   send_command(UC1609_POWER_CONTROL,  UC1609_PC_SET); 

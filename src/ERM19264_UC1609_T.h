@@ -123,8 +123,8 @@ class ERM19264_UC1609_T {
     void  LCDGotoXY(uint8_t column , uint8_t page);
     void  LCDChar(unsigned char character);
     void  LCDString(const unsigned char *characters);
-    void LCDbegin(uint8_t VbiasPot = UC1609_DEFAULT_GN_PM );
-    void LCDinit(void);
+    void LCDbegin(uint8_t VbiasPot = UC1609_DEFAULT_GN_PM, uint8_t AddressSet = UC1609_ADDRESS_SET );
+    void LCDinit(uint8_t AddressSet = UC1609_ADDRESS_SET);
     void LCDPowerDown(void);
     void LCDEnable(uint8_t on);
     void LCDFillScreen(uint8_t pixel, uint8_t mircodelay);
