@@ -1,23 +1,26 @@
-
-// Example file name : ERM19264_UC1609_T.ino
-// Description:
-// Test file for ERM19264_UC1609_T library,
-// in this mode the LCD can be used as a relatively light weight character LCD
-// 8 rows and 216 characters, 7by8 ,font size (192/7 * 64/8 ),
-// you can also write bitmaps directly to screen in this mode.
-// URL: https://github.com/gavinlyonsrepo/ERM19264_UC1609_T
-// *****************************
-// NOTES :
-// (1) GPIO is for arduino UNO.
-// (2) This is for hardware SPI for software SPI see ERM19264_UC1609_T_SWSPI.ino example.
-// ******************************
+/*!
+ * @file ERM19264_UC1609_T.ino
+ * @brief Test file for ERM19264_UC1609_T library using hardware SPI.
+ * This example demonstrates how to use the LCD as a lightweight character display.
+ * The display is divided into 8 rows and supports 216 characters using a 7x8 font 
+ * (calculated as 192/7 * 64/8). It also supports writing bitmaps directly to the screen.
+ * @note 
+ * - GPIO mapping is for Arduino UNO.
+ * - This example uses hardware SPI. For software SPI, see `ERM19264_UC1609_T_SWSPI.ino`.
+ * @see https://github.com/gavinlyonsrepo/ERM19264_UC1609_T
+ */
 
 #include <ERM19264_UC1609_T.h>
 
-#define VbiasPOT 0x49 //Constrast 00 to FE , 0x49 is default. user adjust
+/// @cond
+
+//Constrast 00 to FE , 0x49 is default. user adjust
+#define VbiasPOT 0x49 
+// Set AC [2:0] Program registers  for RAM address control. 0x00 to 0x07
+// Address set to default 0x02 
+#define AddressSet UC1609_ADDRESS_SET 
 
 // GPIO 5-wire SPI interface
-
 #define CS 10  // GPIO pin number pick any you want
 #define CD  9 // GPIO pin number pick any you want 
 #define RST 8 // GPIO pin number pick any you want
@@ -31,7 +34,7 @@ ERM19264_UC1609_T  mylcd(CD, RST, CS); // instate object , CD, RST, CS
 
 // ************* SETUP ***************
 void setup() {
-  mylcd.LCDbegin(VbiasPOT); // initialize the LCD
+  mylcd.LCDbegin(VbiasPOT, AddressSet); // initialize the LCD
   mylcd.LCDFillScreen(0x00, 0); // clear screen
   delay(50);
 }
@@ -127,3 +130,6 @@ void Tests()
   mylcd.LCDFillScreen(0x00, 0); // Clear the screen
 #endif
 }
+
+
+/// @endcond

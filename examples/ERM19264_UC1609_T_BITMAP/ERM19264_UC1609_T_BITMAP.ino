@@ -1,17 +1,23 @@
-
-// Example file name : ERM19264_UC1609_T_BITMAPS.ino
-// Description:
-// Test file for ERM19264_UC1609_T library, showing how to display bitmaps
-// URL: https://github.com/gavinlyonsrepo/ERM19264_UC1609_T
-// *****************************
-// NOTES :
-// (1) GPIO is for arduino UNO.
-// (2) This is for hardware SPI, for software SPI see ERM19264_UC1609_T_SWSPI.ino example.
-// ******************************
+/*!
+ * @file  ERM19264_UC1609_T_BITMAPS.ino
+ * @brief Test file for ERM19264_UC1609_T library using hardware SPI.
+          showing how to display bitmaps
+ * @note 
+ * - GPIO mapping is for Arduino UNO.
+ * - This example uses hardware SPI. For software SPI, see `ERM19264_UC1609_T_SWSPI.ino`.
+ *
+ * @see https://github.com/gavinlyonsrepo/ERM19264_UC1609_T
+ */
 
 #include <ERM19264_UC1609_T.h>
 
-#define VbiasPOT 0xB1 //Constrast 00 to FE , 0x49 is datasheet default. User adjust.
+/// @cond
+
+//Constrast 00 to FE , 0x49 is default. user adjust
+#define VbiasPOT 0x49 
+// Set AC [2:0] Program registers  for RAM address control. 0x00 to 0x07
+// Address set to default 0x02 
+#define AddressSet UC1609_ADDRESS_SET 
 
 // GPIO 5-wire SPI interface
 #define CS 10  // GPIO pin number pick any you want
@@ -131,7 +137,7 @@ const   PROGMEM  uint8_t smallImage [] = {
 };
 void setup()
 {
-  mylcd.LCDbegin(VbiasPOT);     // initialize the LCD
+  mylcd.LCDbegin(VbiasPOT, AddressSet);     // initialize the LCD
   mylcd.LCDFillScreen(0x5E, 0); // fill screen with pattern
   delay(2000);
 }
@@ -153,3 +159,5 @@ void loop()
     delay(1000);
   }
 }
+
+/// @endcond

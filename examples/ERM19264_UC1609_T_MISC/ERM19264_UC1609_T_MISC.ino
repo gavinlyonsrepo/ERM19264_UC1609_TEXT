@@ -1,23 +1,29 @@
+/*!
+ * @file ERM19264_UC1609_T_Misc.ino
+ * @brief Test file for ERM19264_UC1609_TEXT library demonstrating various display functions.
+ * @details  * This example showcases the following features:
+ * - (1) All Pixels On
+ * - (2) Invert Screen
+ * - (3) Rotate Screen
+ * - (4) Scroll Screen
+ * - (5) Enable and Disable Screen
+ * @note 
+ * - GPIO is configured for Arduino UNO. For other supported MCUs, refer to the README.
+ * - This example uses hardware SPI. For software SPI, see `ERM19264_UC1609_SWSPI.ino`.
+ *
+ * @see https://github.com/gavinlyonsrepo/ERM19264_UC1609_TEXT
+ */
 
-// Example file name : ERM19264_UC1609_Misc.ino
-// Description:
-// Test file for ERM19264_UC1609 library, showing use of various functions
-//  (1) All Pixels on
-//  (2) Invert screen
-//  (3) Rotate screen
-//  (4) Scroll Screen
-//  (5) Enable and disable Screen
-//
-// URL: https://github.com/gavinlyonsrepo/ERM19264_UC1609
-// *****************************
-// NOTES :
-// (1) GPIO is for arduino UNO for other tested MCU see readme
-// (2) This is for hardware SPI for software SPI see ERM19264_UC1609_SWSPI.ino example.
-// ******************************
 
 #include <ERM19264_UC1609_T.h> // Include the library
 
-#define VbiasPOT 0x49 //Constrast 00 to FE , 0x49 is default. USER adjust
+/// @cond
+
+//Constrast 00 to FE , 0x49 is default. user adjust
+#define VbiasPOT 0x49 
+// Set AC [2:0] Program registers  for RAM address control. 0x00 to 0x07
+// Address set to default 0x02 
+#define AddressSet UC1609_ADDRESS_SET 
 
 // GPIO 5-wire SPI interface
 #define CS 10  // GPIO pin number pick any you want
@@ -31,7 +37,7 @@ ERM19264_UC1609_T  mylcd(CD , RST, CS);
 // ************* SETUP ***************
 void setup()
 {
-  mylcd.LCDbegin(VbiasPOT);             // initialize the LCD
+  mylcd.LCDbegin(VbiasPOT, AddressSet);             // initialize the LCD
   mylcd.LCDFillScreen(0x00, 0);
   delay(20);
 }
@@ -116,4 +122,5 @@ void loop()
   }
 }
 
+/// @endcond
 // *********** END OF MAIN ***********

@@ -1,9 +1,8 @@
-/*
-* Project Name: ERM19264_UC1609T
-* File: custom_graphics_font.h
-* Description: ERM19264 LCD driven by UC1609C controller font file light weight text only version.
-* Author: Gavin Lyons.
-* URL: https://github.com/gavinlyonsrepo/ERM19264_UC1609_T
+/*!
+* @file LCD_FONT_CUSTOM.h
+* @brief Custom font for ERM19264 LCD UC1609C controller. Font file light weight text only version.
+* @author Gavin Lyons.
+* @details https://github.com/gavinlyonsrepo/ERM19264_UC1609_TEXT
 */
 
 #ifndef LCD_FONT_CUSTOM_H
@@ -16,13 +15,15 @@
  #define PROGMEM
 #endif
  
-// ************ USER OPTION **************
+// ************ USER OPTION FONT **************
 // Comment these defines IN too include entire font , Will increase program size.
 //#define UC_FONT_MOD_ONE // (increase 150 bytes)
 //#define UC_FONT_MOD_TWO // (increase 640 bytes)
 //*****************************************
 
-// Standard ASCII 5x7 font , Column padding added by software
+/*! 
+	@brief Standard ASCII 5x7 font, Column padding added by software
+*/
 static const unsigned char custom_font[] PROGMEM = {
 #ifdef UC_FONT_MOD_ONE
     0x00, 0x00, 0x00, 0x00, 0x00,   
