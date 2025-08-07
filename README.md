@@ -5,13 +5,12 @@ Table of contents
 
   * [Overview](#overview)
   * [Output](#output)
-  * [Installation](#installation)
   * [Hardware](#hardware)
   * [Features](#features)
 
 Overview
 --------------------
-* Name : ERM19264_UC1609_T
+* Name : ERM19264_UC1609_TEXT
 * Title : Library for ERM19264-5 v3 LCD  (UC1609C controller) for the Arduino eco-system
 * Description : 
 
@@ -36,13 +35,6 @@ Output Screenshot showing ASCII font 0-127 (note the font file needs a small mod
 
 ![op](https://github.com/gavinlyonsrepo/ERM19264_UC1609_T/blob/main/extras/image/output.jpg)
 
-Installation
-------------------------------
-
-Unlike the main version, this library is not included in the official Arduino library manager.
-Please install manually by downloading and placing in your arduino library folder.
-
-[Installing Additional Arduino Libraries guide](https://www.arduino.cc/en/Guide/Libraries)
 
 Hardware
 ----------------------------
@@ -59,7 +51,8 @@ selection and easy to port to other MCU's. When running Software SPI it may be n
 
 *text and fonts*
 
-Text only, no buffer or no graphics , relatively light weight. A "hello world" Sketch uses 2172 bytes (6%) of and uses 42 bytes (2%) of dynamic memory on UNO.
+Text only, no buffer or no graphics , relatively light weight. 
+A "hello world" Sketch uses 2172 bytes (6%) of program memory and 42 bytes (2%) of data memory on UNO.
 Turns LCD into simple character LCD(216 characters, 8 rows/pages)
 
 The font is be  truncated by two defines to save memory space.
@@ -68,7 +61,7 @@ To include the characters cut out by these defines , simply comment them in.
 1.  UC_FONT_MOD_ONE , cuts out first 30 characters 
 2.  UC_FONT_MOD_TWO cuts out everything after  127 characters, [extended ASCII](https://www.extended-ascii.com/).
 
-The font is a standard 5 by 7 ASCII font with two  columns  of padding added. So 7 by 8 in effect. In standard text size and No buffer mode this means 192/7 * 64/8 = 27 * 8 = 216 characters.
+The font is a standard 5 by 7 ASCII font with two columns  of padding added. So 7 by 8 in effect. In standard text size and No buffer mode this means 192/7 * 64/8 = 27 * 8 = 216 characters.
 
 
 *bitmaps*
