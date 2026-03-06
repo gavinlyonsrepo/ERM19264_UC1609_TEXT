@@ -67,4 +67,4 @@ The font is a standard 5 by 7 ASCII font with two columns  of padding added. So 
 *bitmaps*
 
 Bitmaps can still be written directly to screen.
-Bitmaps can be turned to data [here at link]( https://javl.github.io/image2cpp/) use vertical addressing draw mode. 
+Bitmaps can be turned to data [here at link](https://github.com/gavinlyonsrepo/Guardian_LTSM) use vertical addressing draw mode. 
